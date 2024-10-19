@@ -1,0 +1,6 @@
+@Dotnetstore.OvenSimulator.WebAPI_HostAddress = http://localhost:5016
+
+GET {{Dotnetstore.OvenSimulator.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

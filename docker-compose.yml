@@ -1,0 +1,6 @@
+﻿services:
+  dotnetstore.ovensimulator.webapi:
+    image: dotnetstore.ovensimulator.webapi
+    build:
+      context: .
+      dockerfile: src/Dotnetstore.OvenSimulator.WebAPI/Dockerfile
