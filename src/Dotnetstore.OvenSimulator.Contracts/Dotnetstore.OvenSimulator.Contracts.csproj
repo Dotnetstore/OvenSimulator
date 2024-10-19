@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dotnetstore.OvenSimulator.SharedKernel\Dotnetstore.OvenSimulator.SharedKernel.csproj" />
+    </ItemGroup>
+
+</Project>

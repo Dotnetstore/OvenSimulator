@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Dotnetstore.OvenSimulator.SharedKernel\Dotnetstore.OvenSimulator.SharedKernel.csproj" />
+      <ProjectReference Include="..\Dotnetstore.OvenSimulator.Recipes\Dotnetstore.OvenSimulator.Recipes.csproj" />
     </ItemGroup>
 
 </Project>

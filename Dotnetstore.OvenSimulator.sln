@@ -13,6 +13,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedKernel", "SharedKerne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.OvenSimulator.SharedKernel", "src\Dotnetstore.OvenSimulator.SharedKernel\Dotnetstore.OvenSimulator.SharedKernel.csproj", "{2B734B4B-5E58-449C-BBC4-ACC8780AF883}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recipes", "Recipes", "{85625684-528F-42D9-91AD-6E9EFF3333BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{B30B0163-9492-4355-B285-A6E9DAD66CA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK", "SDK", "{8DBEBDFA-86B5-4C41-89AA-AD22047A68BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.OvenSimulator.SDK", "src\Dotnetstore.OvenSimulator.SDK\Dotnetstore.OvenSimulator.SDK.csproj", "{CC55551F-5D4A-4ED1-9837-E3459F8B9FA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.OvenSimulator.Recipes", "src\Dotnetstore.OvenSimulator.Recipes\Dotnetstore.OvenSimulator.Recipes.csproj", "{A8D18A44-502E-4D7A-8976-4C043D32AD84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.OvenSimulator.Contracts", "src\Dotnetstore.OvenSimulator.Contracts\Dotnetstore.OvenSimulator.Contracts.csproj", "{C01F3AF5-8B99-45F2-BE90-40112CACF510}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +33,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9BD93AD3-21CC-4E11-A248-DEA89491B0AE} = {4C2DEE2C-38C5-4252-BC79-B9F3D46A6FE6}
 		{2B734B4B-5E58-449C-BBC4-ACC8780AF883} = {A40F53BA-182B-487C-9444-144448B1BDD0}
+		{CC55551F-5D4A-4ED1-9837-E3459F8B9FA4} = {8DBEBDFA-86B5-4C41-89AA-AD22047A68BE}
+		{A8D18A44-502E-4D7A-8976-4C043D32AD84} = {85625684-528F-42D9-91AD-6E9EFF3333BE}
+		{C01F3AF5-8B99-45F2-BE90-40112CACF510} = {B30B0163-9492-4355-B285-A6E9DAD66CA6}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9BD93AD3-21CC-4E11-A248-DEA89491B0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -31,5 +46,17 @@ Global
 		{2B734B4B-5E58-449C-BBC4-ACC8780AF883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B734B4B-5E58-449C-BBC4-ACC8780AF883}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B734B4B-5E58-449C-BBC4-ACC8780AF883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC55551F-5D4A-4ED1-9837-E3459F8B9FA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC55551F-5D4A-4ED1-9837-E3459F8B9FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC55551F-5D4A-4ED1-9837-E3459F8B9FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC55551F-5D4A-4ED1-9837-E3459F8B9FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8D18A44-502E-4D7A-8976-4C043D32AD84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D18A44-502E-4D7A-8976-4C043D32AD84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D18A44-502E-4D7A-8976-4C043D32AD84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D18A44-502E-4D7A-8976-4C043D32AD84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01F3AF5-8B99-45F2-BE90-40112CACF510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01F3AF5-8B99-45F2-BE90-40112CACF510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01F3AF5-8B99-45F2-BE90-40112CACF510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01F3AF5-8B99-45F2-BE90-40112CACF510}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
