@@ -1,4 +1,5 @@
-﻿using Dotnetstore.OvenSimulator.SharedKernel.Repositories;
+﻿using Dotnetstore.OvenSimulator.SharedKernel.Models;
+using Dotnetstore.OvenSimulator.SharedKernel.Repositories;
 using FastEndpoints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,10 +13,8 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        // mediatRAssemblies.Add(typeof(ISharedKernelAssemblyMarker).Assembly);
-
         services
-            // .Configure<AmazonSettings>(configuration.GetSection(AmazonSettings.Key))
+            .Configure<AmazonSettings>(configuration.GetSection(AmazonSettings.Key))
             .AddFastEndpoints()
             .AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 

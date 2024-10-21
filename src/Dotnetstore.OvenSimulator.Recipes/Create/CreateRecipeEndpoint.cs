@@ -1,18 +1,33 @@
-﻿using Dotnetstore.OvenSimulator.Recipes.Services;
+﻿using Dotnetstore.OvenSimulator.Contracts.Queries;
+using Dotnetstore.OvenSimulator.Recipes.GetById;
+using Dotnetstore.OvenSimulator.Recipes.Services;
 using Dotnetstore.OvenSimulator.SDK;
 using Dotnetstore.OvenSimulator.SDK.Recipes.Requests;
 using Dotnetstore.OvenSimulator.SDK.Recipes.Responses;
+using Dotnetstore.OvenSimulator.SharedKernel.Services;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 
 namespace Dotnetstore.OvenSimulator.Recipes.Create;
 
-internal sealed class CreateRecipeEndpoint(IRecipeService recipeService) : Endpoint<CreateRecipeRequest, RecipeResponse?>
+internal sealed class CreateRecipeEndpoint(
+    IRecipeService recipeService,
+    ISender sender) : Endpoint<CreateRecipeRequest, RecipeResponse?>
 {
     public override void Configure()
     {
         Post(ApiEndpoints.Recipe.Create);
+        Summary(s =>
+            s.ExampleRequest = new CreateRecipeRequest
+            {
+                Name = DataSchemeConstants.DefaultRecipeNameValue,
+                HeatCapacity = DataSchemeConstants.DefaultHeatCapacityValue,
+                HeaterPowerPercentage = DataSchemeConstants.DefaultHeaterPowerPercentageValue,
+                HeatLossCoefficient = DataSchemeConstants.DefaultHeatLossCoefficientValue,
+                TargetTemperature = DataSchemeConstants.DefaultTargetTemperatureValue
+            });
         Description(x =>
             x.WithDescription("Create a new recipe")
                 .AutoTagOverride("Recipes"));
@@ -29,6 +44,20 @@ internal sealed class CreateRecipeEndpoint(IRecipeService recipeService) : Endpo
             await SendErrorsAsync(cancellation: ct);
         }
         else
-            await SendAsync(result.Value, statusCode: 201, cancellation: ct);
+        {
+            if (result.Value is null)
+            {
+                AddError("Recipe was not created");
+                await SendErrorsAsync(cancellation: ct);
+            }
+            else
+            {
+                var recipeResponse = result.Value.Value;
+                await SendCreatedAtAsync<GetRecipeByIdEndpoint>(new { id = recipeResponse.Id }, recipeResponse, cancellation: ct);
+            
+                var query = new CreatedRecipeQuery(req, recipeResponse);
+                _ = sender.Send(query, ct);
+            }
+        }
     }
 }

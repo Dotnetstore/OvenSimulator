@@ -1,4 +1,5 @@
-﻿using Dotnetstore.OvenSimulator.Recipes.Data;
+﻿using System.Reflection;
+using Dotnetstore.OvenSimulator.Recipes.Data;
 using Dotnetstore.OvenSimulator.Recipes.Health;
 using Dotnetstore.OvenSimulator.Recipes.Services;
 using Dotnetstore.OvenSimulator.SharedKernel.Extensions;
@@ -13,9 +14,10 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddRecipes(
         this IServiceCollection services,
-        IConfiguration configuration)
+        IConfiguration configuration,
+        List<Assembly> mediatRAssemblies)
     {
-        // mediatRAssemblies.Add((Assembly)typeof(IRecipeAssemblyMarker).Assembly);
+        mediatRAssemblies.Add(typeof(IRecipeAssemblyMarker).Assembly);
 
         var connectionString = configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
         ArgumentException.ThrowIfNullOrWhiteSpace(connectionString, nameof(connectionString));

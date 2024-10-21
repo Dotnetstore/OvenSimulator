@@ -1,7 +1,12 @@
-﻿using Dotnetstore.OvenSimulator.Recipes.Extensions;
+﻿using System.Reflection;
+using Dotnetstore.OvenSimulator.Amazon.Extensions;
+using Dotnetstore.OvenSimulator.Recipes.Extensions;
+using Dotnetstore.OvenSimulator.SharedKernel.Behavior;
 using Dotnetstore.OvenSimulator.SharedKernel.Extensions;
+using Dotnetstore.OvenSimulator.WebAPI.Services;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using MediatR;
 using Serilog;
 
 namespace Dotnetstore.OvenSimulator.WebAPI.Extensions;
@@ -12,29 +17,25 @@ internal static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        // List<Assembly> mediatRAssemblies =
-        // [
-        //     typeof(Program).Assembly,
-        //     typeof(IContractsAssemblyMarker).Assembly
-        //
-        // ];
+        List<Assembly> mediatRAssemblies =
+        [
+            typeof(Program).Assembly
+        ];
 
         services
-            //     .AddHostedService<HMISimulatorService>()
+            .AddHostedService<OvenSimulatorService>()
             .AddSerilog()
             .AddFastEndpoints()
             .SwaggerDocument()
             .AddSharedKernel(configuration)
-            //     .AddAmazon(mediatRAssemblies)
+            .AddAmazon(mediatRAssemblies)
             //     .AddOven(configuration, mediatRAssemblies)
-            .AddRecipes(configuration)
-            //     .AddMediatR(x => x.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()))
+            .AddRecipes(configuration, mediatRAssemblies)
+            .AddMediatR(x => x.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()))
             .AddHealthChecks();
         
-        // services
-        //     .AddValidatorsFromAssemblyContaining<IAmazonAssemblyMarker>()
-        //     .AddMediatRLoggingBehavior()
-        //     .AddMediatRFluentValidationBehavior();
+        services
+            .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         
         return services;
     }

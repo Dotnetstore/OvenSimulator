@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.OvenSimulator.R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.OvenSimulator.WebAPI.Tests.Integration", "tests\Dotnetstore.OvenSimulator.WebAPI.Tests.Integration\Dotnetstore.OvenSimulator.WebAPI.Tests.Integration.csproj", "{CEA81506-12A4-46A7-9F60-94D8B60005B9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Amazon", "Amazon", "{94D4543F-0869-4CCE-B7C6-C2A47A262C9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.OvenSimulator.Amazon", "src\Dotnetstore.OvenSimulator.Amazon\Dotnetstore.OvenSimulator.Amazon.csproj", "{FDB078F4-9D4B-4289-933A-4998212745C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,7 @@ Global
 		{A2EF4152-8FA5-45DA-9033-60B5EBCA111F} = {B30B0163-9492-4355-B285-A6E9DAD66CA6}
 		{622BCAE8-A07C-402A-B569-654127F61BFA} = {85625684-528F-42D9-91AD-6E9EFF3333BE}
 		{CEA81506-12A4-46A7-9F60-94D8B60005B9} = {4C2DEE2C-38C5-4252-BC79-B9F3D46A6FE6}
+		{FDB078F4-9D4B-4289-933A-4998212745C9} = {94D4543F-0869-4CCE-B7C6-C2A47A262C9C}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9BD93AD3-21CC-4E11-A248-DEA89491B0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -95,5 +100,9 @@ Global
 		{CEA81506-12A4-46A7-9F60-94D8B60005B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEA81506-12A4-46A7-9F60-94D8B60005B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEA81506-12A4-46A7-9F60-94D8B60005B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB078F4-9D4B-4289-933A-4998212745C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB078F4-9D4B-4289-933A-4998212745C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB078F4-9D4B-4289-933A-4998212745C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB078F4-9D4B-4289-933A-4998212745C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
