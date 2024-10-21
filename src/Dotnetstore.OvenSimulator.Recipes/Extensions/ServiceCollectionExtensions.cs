@@ -41,7 +41,7 @@ public static class ServiceCollectionExtensions
                 opt.SetEvaluationTimeInSeconds(10);
                 opt.MaximumHistoryEntriesPerEndpoint(60);
                 opt.SetApiMaxActiveRequests(1);
-                opt.AddHealthCheckEndpoint("Recipe", "/health/recipe");
+                opt.AddHealthCheckEndpoint("Recipe", "/health");
             })
             .AddInMemoryStorage();
         

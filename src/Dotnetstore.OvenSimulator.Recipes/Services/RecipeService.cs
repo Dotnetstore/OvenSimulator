@@ -1,5 +1,7 @@
 ﻿using Ardalis.Result;
 using Dotnetstore.OvenSimulator.Contracts.Entities;
+using Dotnetstore.OvenSimulator.Recipes.Create;
+using Dotnetstore.OvenSimulator.SDK.Recipes.Requests;
 using Dotnetstore.OvenSimulator.SDK.Recipes.Responses;
 using Microsoft.Extensions.Logging;
 
@@ -40,6 +42,25 @@ internal sealed class RecipeService
             logger.LogWarning("No recipe found with name {Name}", name);
             return Result<RecipeResponse?>.NotFound("No recipe found with name {Name}", name);
         }
+        
+        return Result<RecipeResponse?>.Success(recipe.ToRecipeResponse());
+    }
+
+    async ValueTask<Result<RecipeResponse?>> IRecipeService.CreateAsync(CreateRecipeRequest request, CancellationToken ct)
+    {
+        var recipe = CreateRecipeBuilder.CreateNewRecipe()
+            .CreateRecipeId(Guid.NewGuid())
+            .SetRecipeName(request.Name)
+            .SetRecipeHeatCapacity(request.HeatCapacity)
+            .SetRecipeHeatLossCoefficient(request.HeatLossCoefficient)
+            .SetRecipeHeaterPowerPercentage(request.HeaterPowerPercentage)
+            .SetRecipeTargetTemperature(request.TargetTemperature)
+            .Build();
+        
+        recipeRepository.Create(recipe);
+        await recipeRepository.SaveChangesAsync(ct);
+        
+        logger.LogInformation("Created recipe with id {Id}", recipe.Id.ToString());
         
         return Result<RecipeResponse?>.Success(recipe.ToRecipeResponse());
     }

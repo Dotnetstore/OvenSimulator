@@ -1,5 +1,7 @@
-﻿using Dotnetstore.OvenSimulator.Recipes.GetAll;
+﻿using Dotnetstore.OvenSimulator.Recipes.Create;
+using Dotnetstore.OvenSimulator.Recipes.GetAll;
 using Dotnetstore.OvenSimulator.SDK;
+using Dotnetstore.OvenSimulator.SDK.Recipes.Requests;
 using Dotnetstore.OvenSimulator.SDK.Recipes.Responses;
 using Dotnetstore.OvenSimulator.SharedKernel.Services;
 using FastEndpoints;
@@ -113,6 +115,40 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
             response.Should().NotBeNull();
             response.Should().HaveError();
             response.IsSuccessStatusCode.Should().BeFalse();
+        }
+    }
+    
+    [Fact]
+    public async Task CreateRecipe_ShouldReturnRecipe()
+    {
+        // Arrange
+        var request = new CreateRecipeRequest("Test", 500.0, 0.1, 100.0, 300.0);
+        
+        // Act
+        var response = await simulatorBase.Client.POSTAsync<CreateRecipeEndpoint, CreateRecipeRequest, RecipeResponse?>(request);
+        
+        // Assert
+        using (new AssertionScope())
+        {
+            response.Should().NotBeNull();
+            response.Result.Should().NotBeNull();
+            response.Response.IsSuccessStatusCode.Should().BeTrue();
+        }
+    }
+    
+    [Fact]
+    public async Task CreateRecipe_EmptyName_ShouldFail()
+    {
+        // Arrange
+        var request = new CreateRecipeRequest("", 500.0, 0.1, 100.0, 300.0);
+        
+        // Act
+        var response = await simulatorBase.Client.POSTAsync<CreateRecipeEndpoint, CreateRecipeRequest, RecipeResponse?>(request);
+        
+        // Assert
+        using (new AssertionScope())
+        {
+            response.Response.IsSuccessStatusCode.Should().BeFalse();
         }
     }
 }

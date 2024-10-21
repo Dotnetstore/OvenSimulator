@@ -5,7 +5,7 @@ namespace Dotnetstore.OvenSimulator.Recipes.Health;
 
 internal sealed class MemoryHealthCheck(IOptionsMonitor<MemoryCheckOptions> options) : IHealthCheck
 {
-    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new CancellationToken())
+    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new())
     {
         var memOptions = options.Get(context.Registration.Name);
         

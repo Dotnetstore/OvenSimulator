@@ -6,7 +6,7 @@ namespace Dotnetstore.OvenSimulator.Recipes.Health;
 
 internal sealed class DatabaseHealthCheck(RecipeDataContext ovenDataContext) : IHealthCheck
 {
-    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new CancellationToken())
+    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new())
     {
         try
         {
