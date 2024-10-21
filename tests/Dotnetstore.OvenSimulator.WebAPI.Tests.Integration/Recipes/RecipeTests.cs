@@ -79,4 +79,40 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
             response.IsSuccessStatusCode.Should().BeFalse();
         }
     }
+
+    [Fact]
+    public async Task GetRecipeByName_ShouldReturnRecipe()
+    {
+        // Arrange
+        var url = ApiEndpoints.Recipe.GetByName.Replace("{name}", "Pizza");
+        
+        // Act
+        var response = await simulatorBase.Client.GetAsync(url);
+        
+        // Assert
+        using (new AssertionScope())
+        {
+            response.Should().NotBeNull();
+            response.Should().BeSuccessful();
+            response.Content.Should().NotBeNull();
+        }
+    }
+
+    [Fact]
+    public async Task GetRecipeById_SendingEmptyString_ShouldReturnFail()
+    {
+        // Arrange
+        var url = ApiEndpoints.Recipe.GetByName.Replace("{name}", "");
+        
+        // Act
+        var response = await simulatorBase.Client.GetAsync(url);
+        
+        // Assert
+        using (new AssertionScope())
+        {
+            response.Should().NotBeNull();
+            response.Should().HaveError();
+            response.IsSuccessStatusCode.Should().BeFalse();
+        }
+    }
 }
