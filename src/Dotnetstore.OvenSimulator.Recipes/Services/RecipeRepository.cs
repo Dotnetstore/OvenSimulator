@@ -13,6 +13,7 @@ internal sealed class RecipeRepository(
         return unitOfWork
             .Repository<Recipe>()
             .Entities
+            .AsNoTracking()
             .OrderBy(x => x.Name);
     }
     

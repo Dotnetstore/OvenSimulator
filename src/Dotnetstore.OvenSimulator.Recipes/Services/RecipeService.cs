@@ -64,4 +64,29 @@ internal sealed class RecipeService
         
         return Result<RecipeResponse?>.Success(recipe.ToRecipeResponse());
     }
+
+    async ValueTask<Result<Recipe?>> IRecipeService.UpdateAsync(UpdateRecipeRequest request, CancellationToken ct)
+    {
+        var recipe = await recipeRepository.GetByIdAsync(new RecipeId(request.Id), ct);
+
+        if (recipe is null)
+        {
+            logger.LogWarning("No recipe found with id {Id}", request.Id.ToString());
+            return Result<Recipe?>.NotFound("No recipe found with id {Id}", request.Id.ToString());
+        }
+        var oldRecipe = recipe;
+        
+        recipe.Name = request.Name;
+        recipe.HeatCapacity = request.HeatCapacity;
+        recipe.HeatLossCoefficient = request.HeatLossCoefficient;
+        recipe.HeaterPowerPercentage = request.HeaterPowerPercentage;
+        recipe.TargetTemperature = request.TargetTemperature;
+        
+        recipeRepository.Update(recipe);
+        await recipeRepository.SaveChangesAsync(ct);
+        
+        logger.LogInformation("Updated recipe with id {Id}", recipe.Id.ToString());
+        
+        return Result<Recipe?>.Success(oldRecipe);
+    }
 }

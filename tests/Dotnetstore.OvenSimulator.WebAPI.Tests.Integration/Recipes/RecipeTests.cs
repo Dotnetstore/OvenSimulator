@@ -1,5 +1,6 @@
 ﻿using Dotnetstore.OvenSimulator.Recipes.Create;
 using Dotnetstore.OvenSimulator.Recipes.GetAll;
+using Dotnetstore.OvenSimulator.Recipes.Update;
 using Dotnetstore.OvenSimulator.SDK;
 using Dotnetstore.OvenSimulator.SDK.Recipes.Requests;
 using Dotnetstore.OvenSimulator.SDK.Recipes.Responses;
@@ -149,6 +150,40 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
         using (new AssertionScope())
         {
             response.Response.IsSuccessStatusCode.Should().BeFalse();
+        }
+    }
+    
+    [Fact]
+    public async Task UpdateRecipe_ShouldReturnOk()
+    {
+        // Arrange
+        var request = new UpdateRecipeRequest(Guid.Parse(DataSchemeConstants.DefaultRecipeIdValue), "Testar", 500.0, 0.1, 100.0, 300.0);
+        
+        // Act
+        var response = await simulatorBase.Client.PUTAsync<UpdateRecipeEndpoint, UpdateRecipeRequest>(request);
+        
+        // Assert
+        using (new AssertionScope())
+        {
+            response.Should().NotBeNull();
+            response.IsSuccessStatusCode.Should().BeTrue();
+        }
+    }
+    
+    [Fact]
+    public async Task UpdateRecipe_WrongId_ShouldReturnFail()
+    {
+        // Arrange
+        var request = new UpdateRecipeRequest(Guid.NewGuid(), "Testar", 500.0, 0.1, 100.0, 300.0);
+        
+        // Act
+        var response = await simulatorBase.Client.PUTAsync<UpdateRecipeEndpoint, UpdateRecipeRequest>(request);
+        
+        // Assert
+        using (new AssertionScope())
+        {
+            response.Should().NotBeNull();
+            response.IsSuccessStatusCode.Should().BeFalse();
         }
     }
 }
