@@ -16,7 +16,7 @@ internal sealed class GetAllRecipeEndpoint(
         Description(x =>
             x.WithDescription("Get all recipes")
                 .AutoTagOverride("Recipes"));
-        AllowAnonymous();
+        Roles("Operator");
     }
 
     public override async Task HandleAsync(CancellationToken ct)

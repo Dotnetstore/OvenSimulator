@@ -26,4 +26,11 @@ public static class ApiEndpoints
         public const string Update = RecipeBase;
         public const string Delete = $"{RecipeBase}/delete/{{id}}";
     }
+    
+    public static class User
+    {
+        private const string UserBase = $"{Api}/users";
+        
+        public const string Login = $"{UserBase}/login";
+    }
 }

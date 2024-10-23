@@ -22,7 +22,8 @@ internal static class StartupApplicationExtensions
         var app = builder.BuildApplication();
         
         app
-            // .UseSerilogRequestLogging()
+            .UseAuthentication()
+            .UseAuthorization()
             .UseFastEndpoints()
             .UseSwaggerGen()
             .UseHealthChecks("/health", new HealthCheckOptions
