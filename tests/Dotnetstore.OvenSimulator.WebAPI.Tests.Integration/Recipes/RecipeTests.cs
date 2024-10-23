@@ -186,4 +186,38 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
             response.IsSuccessStatusCode.Should().BeFalse();
         }
     }
+    
+    [Fact]
+    public async Task DeleteRecipe_ShouldReturnOk()
+    {
+        // Arrange
+        var url = ApiEndpoints.Recipe.Delete.Replace("{id}", DataSchemeConstants.DefaultRecipeIdValue);
+        
+        // Act
+        var response = await simulatorBase.Client.DeleteAsync(url);
+        
+        // Assert
+        using (new AssertionScope())
+        {
+            response.Should().NotBeNull();
+            response.IsSuccessStatusCode.Should().BeTrue();
+        }
+    }
+    
+    [Fact]
+    public async Task DeleteRecipe_WithWrongId_ShouldReturnFail()
+    {
+        // Arrange
+        var url = ApiEndpoints.Recipe.Delete.Replace("{id}", Guid.NewGuid().ToString());
+        
+        // Act
+        var response = await simulatorBase.Client.DeleteAsync(url);
+        
+        // Assert
+        using (new AssertionScope())
+        {
+            response.Should().NotBeNull();
+            response.IsSuccessStatusCode.Should().BeFalse();
+        }
+    }
 }

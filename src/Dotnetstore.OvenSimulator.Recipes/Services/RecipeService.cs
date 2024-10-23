@@ -89,4 +89,22 @@ internal sealed class RecipeService
         
         return Result<Recipe?>.Success(oldRecipe);
     }
+
+    async ValueTask<Result<bool?>> IRecipeService.DeleteAsync(Guid id, CancellationToken ct)
+    {
+        var recipe = await recipeRepository.GetByIdAsync(new RecipeId(id), ct);
+
+        if (recipe is null)
+        {
+            logger.LogWarning("No recipe found with id {Id}", id.ToString());
+            return Result<bool?>.NotFound("No recipe found with id {Id}", id.ToString());
+        }
+        
+        recipeRepository.Delete(recipe);
+        await recipeRepository.SaveChangesAsync(ct);
+        
+        logger.LogInformation("Deleted recipe with id {Id}", recipe.Id.ToString());
+        
+        return Result<bool?>.Success(true);
+    }
 }

@@ -24,6 +24,6 @@ public static class ApiEndpoints
         public const string GetByName = $"{RecipeBase}/getByName/{{name}}";
         public const string Create = RecipeBase;
         public const string Update = RecipeBase;
-        public const string Delete = RecipeBase;
+        public const string Delete = $"{RecipeBase}/delete/{{id}}";
     }
 }

@@ -96,11 +96,15 @@ internal sealed class AmazonSqsService(
                 {
                     case "CreatedRecipeQuery":
                         var createdQuery = JsonSerializer.Deserialize<CreatedRecipeQuery>(message.Body);
-                        logger.LogInformation("Recipe received to be taken cared of: {CreatedRecipeQuery}", createdQuery.RecipeResponse);
+                        logger.LogInformation("Recipe received to be taken cared of: {CreatedRecipeQuery}", createdQuery);
                         break;
                     case "UpdatedRecipeQuery":
                         var updatedQuery = JsonSerializer.Deserialize<UpdatedRecipeQuery>(message.Body);
                         logger.LogInformation("Recipe received to be taken cared of: {UpdatedRecipeQuery}", updatedQuery);
+                        break;
+                    case "DeletedRecipeQuery":
+                        var deletedQuery = JsonSerializer.Deserialize<DeletedRecipeQuery>(message.Body);
+                        logger.LogInformation("Recipe received to be taken cared of: {DeletedRecipeQuery}", deletedQuery);
                         break;
                     default:
                         logger.LogInformation("Message type not recognized: {MessageType}", messageType);

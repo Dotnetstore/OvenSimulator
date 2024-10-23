@@ -113,6 +113,6 @@ public class ApiEndpointsTests
         const string url = ApiEndpoints.Recipe.Delete;
 
         // Assert
-        url.Should().Be("/api/recipes");
+        url.Should().Be("/api/recipes/delete/{id}");
     }
 }

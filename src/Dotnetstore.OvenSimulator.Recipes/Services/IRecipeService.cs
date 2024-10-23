@@ -16,4 +16,6 @@ internal interface IRecipeService
     ValueTask<Result<RecipeResponse?>> CreateAsync(CreateRecipeRequest request, CancellationToken ct);
     
     ValueTask<Result<Recipe?>> UpdateAsync(UpdateRecipeRequest request, CancellationToken ct);
+    
+    ValueTask<Result<bool?>> DeleteAsync(Guid id, CancellationToken ct);
 }
