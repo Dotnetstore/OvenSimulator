@@ -10,7 +10,10 @@ internal sealed class DatabaseHealthCheck(RecipeDataContext ovenDataContext) : I
     {
         try
         {
-            await ovenDataContext.Recipes.FirstOrDefaultAsync(cancellationToken);
+            await ovenDataContext
+                .Recipes
+                .OrderBy(x => x.Name)
+                .FirstOrDefaultAsync(cancellationToken);
             return HealthCheckResult.Healthy();
         }
         catch (Exception ex)

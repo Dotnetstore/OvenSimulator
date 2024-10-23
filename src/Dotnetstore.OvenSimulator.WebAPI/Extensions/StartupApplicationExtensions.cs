@@ -4,6 +4,7 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
 using Serilog.Core;
+using Serilog.Sinks.OpenTelemetry;
 
 namespace Dotnetstore.OvenSimulator.WebAPI.Extensions;
 
@@ -37,10 +38,16 @@ internal static class StartupApplicationExtensions
         var levelSwitch = new LoggingLevelSwitch();
         Log.Logger = new LoggerConfiguration()
             .WriteTo.Console()
-            .WriteTo.Seq("http://localhost:5341",
-                apiKey: "H1fNIbtzpfcgbhEMrfpo",
-                controlLevelSwitch: levelSwitch,
-                bufferBaseFilename: @"C:\Logs\SeqBuffer")
+            .WriteTo.OpenTelemetry(option =>
+            {
+                option.Endpoint = "http://localhost:5341/ingest/otlp/v1/logs";
+                option.Protocol = OtlpProtocol.HttpProtobuf;
+                option.LevelSwitch = levelSwitch;
+                option.Headers = new Dictionary<string, string>
+                {
+                    ["X-Seq-ApiKey"] = "H1fNIbtzpfcgbhEMrfpo"
+                };
+            })
             .CreateLogger();
 
         return builder;
