@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Dotnetstore.OvenSimulator.Oven.Health;
 using Dotnetstore.OvenSimulator.Oven.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +16,10 @@ public static class ServiceCollectionExtensions
             .AddHostedService<OvenSimulatorService>()
             .AddSingleton<IOvenSimulator, Services.OvenSimulator>()
             .AddScoped<IOvenService, OvenService>();
+        
+        services
+            .AddHealthChecks()
+            .AddCheck<OvenHealthCheck>("Oven");
         
         return services;
     }

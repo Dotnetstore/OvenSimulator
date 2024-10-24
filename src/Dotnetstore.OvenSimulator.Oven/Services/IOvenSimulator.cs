@@ -10,6 +10,8 @@ internal interface IOvenSimulator
     public bool HeatingElementOn { get; internal set; }
     
     public double AmbientTemperature { get; set; }
+
+    public double TargetTemperature { get; set; }
     
     public double CurrentTemperature { get; internal set; }
     
