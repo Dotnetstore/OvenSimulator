@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Dotnetstore.OvenSimulator.Oven.Services;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Dotnetstore.OvenSimulator.Oven.Extensions;
@@ -13,7 +12,9 @@ public static class ServiceCollectionExtensions
         mediatRAssemblies.Add(typeof(IOvenAssemblyMarker).Assembly);
         
         services
-            .AddSingleton<IOvenSimulator, Services.OvenSimulator>();
+            .AddHostedService<OvenSimulatorService>()
+            .AddSingleton<IOvenSimulator, Services.OvenSimulator>()
+            .AddScoped<IOvenService, OvenService>();
         
         return services;
     }

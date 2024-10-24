@@ -47,7 +47,7 @@ internal sealed class UserService : IUserService
             o =>
             {
                 o.SigningKey = "This is a secret key. It should not be spread to anyone. Keep it safe. I keep it here because it is a demo.";
-                o.ExpireAt = DateTime.UtcNow.AddMinutes(15);
+                o.ExpireAt = DateTime.UtcNow.AddHours(5);
                 o.User.Roles.Add(user.Roles.Select(x => x.Name).ToArray());
                 o.User.Claims.Add(("UserName", user.Username));
                 o.User["UserId"] = user.Id.Value.ToString();
