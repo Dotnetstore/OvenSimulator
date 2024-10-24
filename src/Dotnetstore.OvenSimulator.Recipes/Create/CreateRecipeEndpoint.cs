@@ -31,7 +31,7 @@ internal sealed class CreateRecipeEndpoint(
         Description(x =>
             x.WithDescription("Create a new recipe")
                 .AutoTagOverride("Recipes"));
-        AllowAnonymous();
+        Roles("Operator");
     }
 
     public override async Task HandleAsync(CreateRecipeRequest req, CancellationToken ct)

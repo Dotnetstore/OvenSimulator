@@ -1,6 +1,8 @@
 ﻿using Dotnetstore.OvenSimulator.SDK;
 using Dotnetstore.OvenSimulator.SDK.Users.Requests;
 using FastEndpoints;
+using FastEndpoints.Swagger;
+using Microsoft.AspNetCore.Http;
 
 namespace Dotnetstore.OvenSimulator.Users;
 
@@ -9,6 +11,15 @@ internal sealed class UserLoginEndpoint(IUserService userService) : Endpoint<Log
     public override void Configure()
     {
         Post(ApiEndpoints.User.Login);
+        Summary(s =>
+            s.ExampleRequest = new LoginRequest
+            {
+                Username = "test@test.com",
+                Password = "test"
+            });
+        Description(x =>
+            x.WithDescription("User login")
+                .AutoTagOverride("Users"));
         AllowAnonymous();
     }
 

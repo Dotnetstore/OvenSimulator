@@ -18,7 +18,7 @@ internal sealed class DeleteRecipeEndpoint(
         Description(x =>
             x.WithDescription("Delete recipe by id")
                 .AutoTagOverride("Recipes"));
-        AllowAnonymous();
+        Roles("Operator");
     }
 
     public override async Task HandleAsync(CancellationToken ct)

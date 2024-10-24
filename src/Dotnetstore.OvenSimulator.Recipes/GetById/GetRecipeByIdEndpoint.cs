@@ -15,7 +15,7 @@ internal sealed class GetRecipeByIdEndpoint(IRecipeService recipeService) : Endp
         Description(x =>
             x.WithDescription("Get recipe by id")
                 .AutoTagOverride("Recipes"));
-        AllowAnonymous();
+        Roles("Operator");
     }
 
     public override async Task HandleAsync(CancellationToken ct)

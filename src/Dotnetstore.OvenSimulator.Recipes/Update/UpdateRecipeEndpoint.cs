@@ -30,7 +30,7 @@ internal sealed class UpdateRecipeEndpoint(
         Description(x =>
             x.WithDescription("Update a recipe")
                 .AutoTagOverride("Recipes"));
-        AllowAnonymous();
+        Roles("Operator");
     }
 
     public override async Task HandleAsync(UpdateRecipeRequest req, CancellationToken ct)

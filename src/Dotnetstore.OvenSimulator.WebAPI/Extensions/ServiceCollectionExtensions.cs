@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Dotnetstore.OvenSimulator.Amazon.Extensions;
+using Dotnetstore.OvenSimulator.Oven.Extensions;
 using Dotnetstore.OvenSimulator.Recipes.Extensions;
 using Dotnetstore.OvenSimulator.SharedKernel.Behavior;
 using Dotnetstore.OvenSimulator.SharedKernel.Extensions;
@@ -36,6 +37,7 @@ internal static class ServiceCollectionExtensions
             .AddAmazon(mediatRAssemblies)
             //     .AddOven(configuration, mediatRAssemblies)
             .AddRecipes(configuration, mediatRAssemblies)
+            .AddOvenSimulator(mediatRAssemblies)
             .AddUsers()
             .AddMediatR(x => x.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()))
             .AddHealthChecks();

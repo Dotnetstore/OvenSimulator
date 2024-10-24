@@ -5,4 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder
     .StartupApplication();
     
-public partial class Program;
+namespace Dotnetstore.OvenSimulator.WebAPI
+{
+    public partial class Program;
+}
