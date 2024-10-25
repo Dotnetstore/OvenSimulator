@@ -13,7 +13,7 @@ public class ApiEndpointsTests
         const string url = ApiEndpoints.Oven.LoadRecipe;
 
         // Assert
-        url.Should().Be("/api/ovens/load-recipe");
+        url.Should().Be("/api/ovens/load-recipe/{name}");
     }
 
     [Fact]

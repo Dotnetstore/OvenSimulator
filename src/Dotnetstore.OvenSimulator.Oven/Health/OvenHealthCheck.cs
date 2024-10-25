@@ -1,10 +1,13 @@
 ﻿using Dotnetstore.OvenSimulator.Oven.Services;
 using Dotnetstore.OvenSimulator.SDK.Oven;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Logging;
 
 namespace Dotnetstore.OvenSimulator.Oven.Health;
 
-internal sealed class OvenHealthCheck(IOvenSimulator ovenSimulator) : IHealthCheck
+internal sealed class OvenHealthCheck(
+    IOvenSimulator ovenSimulator,
+    ILogger<OvenHealthCheck> logger) : IHealthCheck
 {
     public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = new())
     {
@@ -13,31 +16,43 @@ internal sealed class OvenHealthCheck(IOvenSimulator ovenSimulator) : IHealthChe
         try
         {
             if (ovenSimulator.CurrentError == OvenErrorType.HeaterFailure)
-                return HealthCheckResult.Unhealthy("Heater failure");
+                return OvenUnhealthy("Heater failure");
             
             if (ovenSimulator.CurrentError == OvenErrorType.ThermostatIssue)
-                return HealthCheckResult.Unhealthy("Thermostat issue");
+                return OvenUnhealthy("Thermostat issue");
             
             if (ovenSimulator.CurrentError == OvenErrorType.GradualHeaterFailure)
-                return HealthCheckResult.Degraded("Gradual heater failure");
+                return OvenDegraded("Gradual heater failure");
             
             if (ovenSimulator.CurrentError == OvenErrorType.IntermittentSensorFailure)
-                return HealthCheckResult.Degraded("Intermittent sensor failure");
+                return OvenDegraded("Intermittent sensor failure");
 
             if (ovenSimulator.ActiveRecipe is not null)
             {
                 if (ovenSimulator.CurrentTemperature < ovenSimulator.TargetTemperature - 10)
-                    return HealthCheckResult.Degraded("Oven is not hot enough");
-            
+                    return OvenDegraded("Oven is not hot enough");
+
                 if (ovenSimulator.CurrentTemperature > ovenSimulator.TargetTemperature + 10)
-                    return HealthCheckResult.Degraded("Oven is too hot");
+                    return OvenDegraded("Oven is too hot");
             }
             
             return HealthCheckResult.Healthy();
         }
         catch (Exception ex)
         {
-            return HealthCheckResult.Unhealthy(exception: ex);
+            return OvenUnhealthy($"Exception occurred while checking oven health {ex.Message}");
         }
+    }
+    
+    private HealthCheckResult OvenUnhealthy(string ovenStatus)
+    {
+        logger.LogError("Oven status: {OvenStatus}", ovenStatus);
+        return HealthCheckResult.Unhealthy(ovenStatus);
+    }
+    
+    private HealthCheckResult OvenDegraded(string ovenStatus)
+    {
+        logger.LogWarning("Oven status: {OvenStatus}", ovenStatus);
+        return HealthCheckResult.Degraded(ovenStatus);
     }
 }

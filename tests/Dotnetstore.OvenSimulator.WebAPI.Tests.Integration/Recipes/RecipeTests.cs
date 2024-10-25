@@ -19,7 +19,11 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task GetAllRecipes_ShouldReturn2Objects()
     {
         //Act
-        var (rsp, res) = await simulatorBase.Client.GETAsync<GetAllRecipeEndpoint, IEnumerable<RecipeResponse>>();
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
+        var (rsp, res) = await adminClient.GETAsync<GetAllRecipeEndpoint, IEnumerable<RecipeResponse>>();
         
         //Assert
         using (new AssertionScope())
@@ -33,10 +37,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task GetRecipeById_ShouldReturnRecipe()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var url = ApiEndpoints.Recipe.GetById.Replace("{id}", DataSchemeConstants.DefaultRecipeIdValue);
         
         // Act
-        var response = await simulatorBase.Client.GetAsync(url);
+        var response = await adminClient.GetAsync(url);
         
         // Assert
         using (new AssertionScope())
@@ -51,10 +59,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task GetRecipeById_SendingWrongId_ShouldReturnFail()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var url = ApiEndpoints.Recipe.GetById.Replace("{id}", Guid.NewGuid().ToString());
         
         // Act
-        var response = await simulatorBase.Client.GetAsync(url);
+        var response = await adminClient.GetAsync(url);
         
         // Assert
         using (new AssertionScope())
@@ -69,10 +81,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task GetRecipeById_SendingBadId_ShouldReturnFail()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var url = ApiEndpoints.Recipe.GetById.Replace("{id}", "test");
         
         // Act
-        var response = await simulatorBase.Client.GetAsync(url);
+        var response = await adminClient.GetAsync(url);
         
         // Assert
         using (new AssertionScope())
@@ -87,10 +103,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task GetRecipeByName_ShouldReturnRecipe()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var url = ApiEndpoints.Recipe.GetByName.Replace("{name}", "Pizza");
         
         // Act
-        var response = await simulatorBase.Client.GetAsync(url);
+        var response = await adminClient.GetAsync(url);
         
         // Assert
         using (new AssertionScope())
@@ -105,10 +125,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task GetRecipeById_SendingEmptyString_ShouldReturnFail()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var url = ApiEndpoints.Recipe.GetByName.Replace("{name}", "");
         
         // Act
-        var response = await simulatorBase.Client.GetAsync(url);
+        var response = await adminClient.GetAsync(url);
         
         // Assert
         using (new AssertionScope())
@@ -123,10 +147,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task CreateRecipe_ShouldReturnRecipe()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var request = new CreateRecipeRequest("Test", 500.0, 0.1, 100.0, 300.0);
         
         // Act
-        var response = await simulatorBase.Client.POSTAsync<CreateRecipeEndpoint, CreateRecipeRequest, RecipeResponse?>(request);
+        var response = await adminClient.POSTAsync<CreateRecipeEndpoint, CreateRecipeRequest, RecipeResponse?>(request);
         
         // Assert
         using (new AssertionScope())
@@ -141,10 +169,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task CreateRecipe_EmptyName_ShouldFail()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var request = new CreateRecipeRequest("", 500.0, 0.1, 100.0, 300.0);
         
         // Act
-        var response = await simulatorBase.Client.POSTAsync<CreateRecipeEndpoint, CreateRecipeRequest, RecipeResponse?>(request);
+        var response = await adminClient.POSTAsync<CreateRecipeEndpoint, CreateRecipeRequest, RecipeResponse?>(request);
         
         // Assert
         using (new AssertionScope())
@@ -157,10 +189,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task UpdateRecipe_ShouldReturnOk()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var request = new UpdateRecipeRequest(Guid.Parse(DataSchemeConstants.DefaultRecipeIdValue), "Testar", 500.0, 0.1, 100.0, 300.0);
         
         // Act
-        var response = await simulatorBase.Client.PUTAsync<UpdateRecipeEndpoint, UpdateRecipeRequest>(request);
+        var response = await adminClient.PUTAsync<UpdateRecipeEndpoint, UpdateRecipeRequest>(request);
         
         // Assert
         using (new AssertionScope())
@@ -174,10 +210,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task UpdateRecipe_WrongId_ShouldReturnFail()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var request = new UpdateRecipeRequest(Guid.NewGuid(), "Testar", 500.0, 0.1, 100.0, 300.0);
         
         // Act
-        var response = await simulatorBase.Client.PUTAsync<UpdateRecipeEndpoint, UpdateRecipeRequest>(request);
+        var response = await adminClient.PUTAsync<UpdateRecipeEndpoint, UpdateRecipeRequest>(request);
         
         // Assert
         using (new AssertionScope())
@@ -191,10 +231,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task DeleteRecipe_ShouldReturnOk()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var url = ApiEndpoints.Recipe.Delete.Replace("{id}", DataSchemeConstants.DefaultRecipeIdValue);
         
         // Act
-        var response = await simulatorBase.Client.DeleteAsync(url);
+        var response = await adminClient.DeleteAsync(url);
         
         // Assert
         using (new AssertionScope())
@@ -208,10 +252,14 @@ public class RecipeTests(DotnetstoreOvenSimulatorBase simulatorBase) : TestBase<
     public async Task DeleteRecipe_WithWrongId_ShouldReturnFail()
     {
         // Arrange
+        var adminClient = simulatorBase.CreateClient(c =>
+        {
+            c.DefaultRequestHeaders.Authorization = new("Bearer", simulatorBase.ApiKey);
+        });
         var url = ApiEndpoints.Recipe.Delete.Replace("{id}", Guid.NewGuid().ToString());
         
         // Act
-        var response = await simulatorBase.Client.DeleteAsync(url);
+        var response = await adminClient.DeleteAsync(url);
         
         // Assert
         using (new AssertionScope())
