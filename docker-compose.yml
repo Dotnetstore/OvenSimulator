@@ -4,3 +4,10 @@
     build:
       context: .
       dockerfile: src/Dotnetstore.OvenSimulator.WebAPI/Dockerfile
+
+  dotnetstore.ovensimulator.papercut:
+    image: changemakerstudiosus/papercut-smtp:latest
+    container_name: Dotnetstore.Ovensimulator.Papercut
+    ports:
+        - "8080:80"
+        - "25:25"

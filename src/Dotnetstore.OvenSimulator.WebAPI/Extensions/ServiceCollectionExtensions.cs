@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Dotnetstore.OvenSimulator.Amazon.Extensions;
+using Dotnetstore.OvenSimulator.Email.Extensions;
 using Dotnetstore.OvenSimulator.Oven.Extensions;
 using Dotnetstore.OvenSimulator.Recipes.Extensions;
 using Dotnetstore.OvenSimulator.SharedKernel.Behavior;
@@ -39,6 +40,7 @@ internal static class ServiceCollectionExtensions
             .AddRecipes(configuration, mediatRAssemblies)
             .AddOvenSimulator(mediatRAssemblies)
             .AddUsers()
+            .AddEmail(configuration, mediatRAssemblies)
             .AddMediatR(x => x.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()))
             .AddHealthChecks();
         

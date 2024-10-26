@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Dotnetstore.OvenSimulator.Amazon\Dotnetstore.OvenSimulator.Amazon.csproj" />
+      <ProjectReference Include="..\Dotnetstore.OvenSimulator.Email\Dotnetstore.OvenSimulator.Email.csproj" />
       <ProjectReference Include="..\Dotnetstore.OvenSimulator.Oven\Dotnetstore.OvenSimulator.Oven.csproj" />
       <ProjectReference Include="..\Dotnetstore.OvenSimulator.Recipes\Dotnetstore.OvenSimulator.Recipes.csproj" />
       <ProjectReference Include="..\Dotnetstore.OvenSimulator.Users\Dotnetstore.OvenSimulator.Users.csproj" />

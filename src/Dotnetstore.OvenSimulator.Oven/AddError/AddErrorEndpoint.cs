@@ -1,14 +1,18 @@
-﻿using Dotnetstore.OvenSimulator.Oven.Services;
+﻿using Dotnetstore.OvenSimulator.Contracts.Queries;
+using Dotnetstore.OvenSimulator.Oven.Services;
 using Dotnetstore.OvenSimulator.SDK;
 using Dotnetstore.OvenSimulator.SDK.Oven;
 using Dotnetstore.OvenSimulator.SDK.Oven.Requests;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 
 namespace Dotnetstore.OvenSimulator.Oven.AddError;
 
-internal sealed class AddErrorEndpoint(IOvenService ovenService) : Endpoint<AddErrorRequest>
+internal sealed class AddErrorEndpoint(
+    IOvenService ovenService,
+    ISender sender) : Endpoint<AddErrorRequest>
 {
     public override void Configure()
     {
@@ -27,6 +31,9 @@ internal sealed class AddErrorEndpoint(IOvenService ovenService) : Endpoint<AddE
     public override async Task HandleAsync(AddErrorRequest req, CancellationToken ct)
     {
         ovenService.AddError(req);
+        
+        var query = new SendOvenErrorEmailQuery(req.ErrorType.ToString());
+        _ = sender.Send(query, ct);
         
         await SendOkAsync(ct);
     }

@@ -49,6 +49,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oven", "Oven", "{A5B36A63-7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.OvenSimulator.Oven", "src\Dotnetstore.OvenSimulator.Oven\Dotnetstore.OvenSimulator.Oven.csproj", "{B39B5E37-82AD-4131-80FE-6BACC82DDE58}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Email", "Email", "{66191FAA-E513-408B-B367-34EA5E769B81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.OvenSimulator.Email", "src\Dotnetstore.OvenSimulator.Email\Dotnetstore.OvenSimulator.Email.csproj", "{9AD8A95B-D61E-442B-AF5A-FB6C0F2C7392}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +72,7 @@ Global
 		{FDB078F4-9D4B-4289-933A-4998212745C9} = {94D4543F-0869-4CCE-B7C6-C2A47A262C9C}
 		{6A1E1837-5B3F-44DA-A0FC-06E0635514AA} = {8559CC17-03CF-472E-BBEC-D2E31D471EF4}
 		{B39B5E37-82AD-4131-80FE-6BACC82DDE58} = {A5B36A63-77E0-4252-818E-5E6FAB3AF5A2}
+		{9AD8A95B-D61E-442B-AF5A-FB6C0F2C7392} = {66191FAA-E513-408B-B367-34EA5E769B81}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9BD93AD3-21CC-4E11-A248-DEA89491B0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -122,5 +127,9 @@ Global
 		{B39B5E37-82AD-4131-80FE-6BACC82DDE58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B39B5E37-82AD-4131-80FE-6BACC82DDE58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B39B5E37-82AD-4131-80FE-6BACC82DDE58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AD8A95B-D61E-442B-AF5A-FB6C0F2C7392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AD8A95B-D61E-442B-AF5A-FB6C0F2C7392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AD8A95B-D61E-442B-AF5A-FB6C0F2C7392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AD8A95B-D61E-442B-AF5A-FB6C0F2C7392}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
