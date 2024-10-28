@@ -36,7 +36,6 @@ internal static class ServiceCollectionExtensions
             .SwaggerDocument()
             .AddSharedKernel(configuration)
             .AddAmazon(mediatRAssemblies)
-            //     .AddOven(configuration, mediatRAssemblies)
             .AddRecipes(configuration, mediatRAssemblies)
             .AddOvenSimulator(mediatRAssemblies)
             .AddUsers()

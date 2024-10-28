@@ -1,5 +1,6 @@
 ﻿using Dotnetstore.OvenSimulator.SharedKernel.Models;
 using Dotnetstore.OvenSimulator.SharedKernel.Repositories;
+using Dotnetstore.OvenSimulator.SharedKernel.Services;
 using FastEndpoints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +17,8 @@ public static class ServiceCollectionExtensions
         services
             .Configure<AmazonSettings>(configuration.GetSection(AmazonSettings.Key))
             .AddFastEndpoints()
-            .AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            .AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>))
+            .AddScoped<IAuthenticationService, AuthenticationService>();
 
         return services;
     }

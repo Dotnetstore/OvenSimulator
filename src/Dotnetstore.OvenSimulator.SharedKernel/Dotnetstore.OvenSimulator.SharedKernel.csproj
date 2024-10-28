@@ -7,7 +7,7 @@
       <PackageReference Include="AspNetCore.HealthChecks.UI" Version="8.0.2" />
       <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
       <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="8.0.1" />
-      <PackageReference Include="AWSSDK.SQS" Version="3.7.400.39" />
+      <PackageReference Include="AWSSDK.SQS" Version="3.7.400.40" />
       <PackageReference Include="FastEndpoints" Version="5.30.0" />
       <PackageReference Include="FastEndpoints.Security" Version="5.30.0" />
       <PackageReference Include="FastEndpoints.Swagger" Version="5.30.0" />

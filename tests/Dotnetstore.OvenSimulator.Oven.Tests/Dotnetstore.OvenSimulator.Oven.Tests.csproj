@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Dotnetstore.OvenSimulator.Oven\Dotnetstore.OvenSimulator.Oven.csproj" />
+      <ProjectReference Include="..\Dotnetstore.OvenSimulator.TestHelper\Dotnetstore.OvenSimulator.TestHelper.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    </ItemGroup>
+
+</Project>

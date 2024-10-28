@@ -1,7 +1,5 @@
 ﻿using Dotnetstore.OvenSimulator.Recipes.Data;
-using Dotnetstore.OvenSimulator.SDK.Users.Requests;
 using Dotnetstore.OvenSimulator.SharedKernel.Extensions;
-using Dotnetstore.OvenSimulator.Users;
 using FastEndpoints.Testing;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;

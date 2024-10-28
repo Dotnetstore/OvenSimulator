@@ -105,14 +105,14 @@ public class ApiEndpointsTests
         // Assert
         url.Should().Be("/api/recipes");
     }
-
+    
     [Fact]
-    public void Recipe_Delete_ShouldReturnCorrectUrl()
+    public void User_Login_ShouldReturnCorrectUrl()
     {
         // Act
-        const string url = ApiEndpoints.Recipe.Delete;
+        const string url = ApiEndpoints.User.Login;
 
         // Assert
-        url.Should().Be("/api/recipes/delete/{id}");
+        url.Should().Be("/api/users/login");
     }
 }

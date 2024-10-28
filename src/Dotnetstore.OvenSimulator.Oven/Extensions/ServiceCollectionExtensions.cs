@@ -7,7 +7,8 @@ namespace Dotnetstore.OvenSimulator.Oven.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddOvenSimulator(this IServiceCollection services,
+    public static IServiceCollection AddOvenSimulator(
+        this IServiceCollection services,
         List<Assembly> mediatRAssemblies)
     {
         mediatRAssemblies.Add(typeof(IOvenAssemblyMarker).Assembly);
