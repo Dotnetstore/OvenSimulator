@@ -1,23 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
+      <PackageReference Include="Ardalis.Result" Version="10.1.0" />
       <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
-      <PackageReference Include="Ardalis.Result" Version="10.0.0" />
       <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.2" />
       <PackageReference Include="AspNetCore.HealthChecks.UI" Version="8.0.2" />
       <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
       <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="8.0.1" />
-      <PackageReference Include="AWSSDK.SQS" Version="3.7.400.40" />
-      <PackageReference Include="FastEndpoints" Version="5.30.0" />
-      <PackageReference Include="FastEndpoints.Security" Version="5.30.0" />
-      <PackageReference Include="FastEndpoints.Swagger" Version="5.30.0" />
+      <PackageReference Include="AWSSDK.SQS" Version="3.7.400.59" />
+      <PackageReference Include="Azure.Core" Version="1.44.1" />
+      <PackageReference Include="Azure.Identity" Version="1.13.1" />
+      <PackageReference Include="FastEndpoints" Version="5.32.0" />
+      <PackageReference Include="FastEndpoints.Security" Version="5.32.0" />
+      <PackageReference Include="FastEndpoints.Swagger" Version="5.32.0" />
       <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
       <PackageReference Include="MediatR" Version="12.4.1" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.10" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
-      <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.10" />
-      <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="9.0.0" />
+      <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.0" />
       <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
       <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
       <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
